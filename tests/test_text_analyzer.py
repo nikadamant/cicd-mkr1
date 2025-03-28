@@ -4,6 +4,7 @@ from src.text_analyzer.text_analyzer import (
 )
 import os
 
+
 @pytest.fixture
 def sample_text_file(tmp_path):
     content = "This is a test. It contains multiple sentences! Right? Yes..."
@@ -11,6 +12,7 @@ def sample_text_file(tmp_path):
     with open(file_path, 'w', encoding='utf-8') as f:
         f.write(content)
     return file_path
+
 
 @pytest.mark.parametrize("text,expected", [
     ("Hello world", 2),
@@ -21,6 +23,7 @@ def sample_text_file(tmp_path):
 ])
 def test_count_words(text, expected):
     assert count_words(text) == expected
+
 
 @pytest.mark.parametrize("text,expected", [
     ("Hello.", 1),
