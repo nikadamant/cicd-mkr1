@@ -1,5 +1,4 @@
 import argparse
-import os
 from pathlib import Path
 from src.text_analyzer.text_analyzer import analyze_file
 
