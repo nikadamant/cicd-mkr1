@@ -1,4 +1,6 @@
 import argparse
+import os
+from pathlib import Path
 from src.text_analyzer.text_analyzer import analyze_file
 
 
@@ -10,9 +12,16 @@ def main():
 
     try:
         args = parser.parse_args()
-        result = analyze_file(args.file_path)
 
-        print(f"Analysis results for {args.file_path}:")
+        # Convert to absolute path relative to project root
+        project_root = Path(__file__).parent.parent
+        input_path = (project_root / args.file_path).resolve()
+
+        print(f"Looking for file at: {input_path}")
+
+        result = analyze_file(input_path)
+
+        print(f"Analysis results for {input_path}:")
         print(f"Words: {result['words']}")
         print(f"Sentences: {result['sentences']}")
 
