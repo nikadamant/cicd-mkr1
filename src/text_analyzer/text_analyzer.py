@@ -1,3 +1,5 @@
+from pathlib import Path
+
 def count_words(text: str) -> int:
     """Count words in text using specified separators."""
     if not isinstance(text, str):
@@ -30,16 +32,19 @@ def count_sentences(text: str) -> int:
     return count
 
 
-def analyze_file(file_path: str) -> dict:
+def analyze_file(file_path: str | Path) -> dict:
     """Analyze text file and return word and sentence counts."""
-    if not isinstance(file_path, str):
-        raise TypeError("File path must be a string")
+    if not isinstance(file_path, (str, Path)):
+        raise TypeError("File path must be a string or Path object")
 
-    if not file_path.endswith('.txt'):
+    # Convert Path to string if needed
+    file_path_str = str(file_path)
+
+    if not file_path_str.endswith('.txt'):
         raise ValueError("File must have .txt extension")
 
     try:
-        with open(file_path, 'r', encoding='utf-8') as file:
+        with open(file_path_str, 'r', encoding='utf-8') as file:
             text = file.read()
 
         return {
@@ -47,8 +52,8 @@ def analyze_file(file_path: str) -> dict:
             'sentences': count_sentences(text)
         }
     except FileNotFoundError:
-        raise FileNotFoundError(f"File not found: {file_path}")
+        raise FileNotFoundError(f"File not found: {file_path_str}")
     except PermissionError:
-        raise PermissionError(f"Permission denied for file: {file_path}")
+        raise PermissionError(f"Permission denied for file: {file_path_str}")
     except Exception as e:
         raise Exception(f"Error analyzing file: {str(e)}")
