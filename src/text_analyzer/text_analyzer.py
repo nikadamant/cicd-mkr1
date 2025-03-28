@@ -28,3 +28,27 @@ def count_sentences(text: str) -> int:
         if char in ['.', '!', '?']:
             count += 1
     return count
+
+
+def analyze_file(file_path: str) -> dict:
+    """Analyze text file and return word and sentence counts."""
+    if not isinstance(file_path, str):
+        raise TypeError("File path must be a string")
+
+    if not file_path.endswith('.txt'):
+        raise ValueError("File must have .txt extension")
+
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            text = file.read()
+
+        return {
+            'words': count_words(text),
+            'sentences': count_sentences(text)
+        }
+    except FileNotFoundError:
+        raise FileNotFoundError(f"File not found: {file_path}")
+    except PermissionError:
+        raise PermissionError(f"Permission denied for file: {file_path}")
+    except Exception as e:
+        raise Exception(f"Error analyzing file: {str(e)}")
