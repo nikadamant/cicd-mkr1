@@ -3,7 +3,9 @@ from src.text_analyzer.text_analyzer import analyze_file
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Analyze text file for word and sentence counts.')
+    parser = argparse.ArgumentParser(
+        description='Analyze text file for word and sentence counts.'
+    )
     parser.add_argument('file_path', help='Path to the text file to analyze')
 
     try:

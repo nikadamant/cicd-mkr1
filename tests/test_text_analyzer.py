@@ -1,5 +1,7 @@
 import pytest
-from src.text_analyzer.text_analyzer import count_words, count_sentences, analyze_file
+from src.text_analyzer.text_analyzer import (
+    count_words, count_sentences, analyze_file
+)
 import os
 
 @pytest.fixture

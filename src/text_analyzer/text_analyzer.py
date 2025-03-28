@@ -1,5 +1,6 @@
 from pathlib import Path
 
+
 def count_words(text: str) -> int:
     """Count words in text using specified separators."""
     if not isinstance(text, str):
