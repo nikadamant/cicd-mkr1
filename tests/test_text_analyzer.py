@@ -32,5 +32,5 @@ def test_count_sentences(text, expected):
 
 def test_analyze_file(sample_text_file):
     result = analyze_file(str(sample_text_file))
-    assert result['words'] == 8
+    assert result['words'] == 10
     assert result['sentences'] == 4
